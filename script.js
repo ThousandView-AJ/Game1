@@ -14,10 +14,16 @@ function getComputerChoice() {
 }
 let com=0
 let pla=0
-function getHumanChoice(){
-    let ch=prompt("enter your choice rock/paper/scissor").toLowerCase()
-    return ch
-}
+// function getHumanChoice(){
+//     let ch=prompt("enter your choice rock/paper/scissor").toLowerCase()
+//     return ch
+// }
+let parent=document.querySelector("#choices")
+parent.addEventListener("click",(e)=>{
+    if (e.target.tagName==="BUTTON"){
+        playRound(e.target.textContent.toLowerCase(),getComputerChoice())
+    }
+})
 function playRound(humanChoice, computerChoice) {
     if (humanChoice==computerChoice){
         return
@@ -34,18 +40,25 @@ function playRound(humanChoice, computerChoice) {
     else{
         com+=1
     }
-    console.log("computer choice: "+computerChoice)
-    console.log("player choice: "+humanChoice)
-  
+    document.querySelector("#player-choice").textContent="Player Choice: "+humanChoice
+    document.querySelector("#computer-choice").textContent="Computer Choice: "+computerChoice
+    document.querySelector("#outcome").textContent="Outcome: "+(pla>com ? "Player Wins!" : com>pla ? "Computer Wins!" : "It's a Tie!")
+    document.querySelector("#player-score").textContent="Player Score: "+pla
+    document.querySelector("#computer-score").textContent="Computer Score: "+com
+    if (pla==5){
+        alert("Player wins the game!")
+        pla=0
+        com=0
+    }
+    else if (com==5){
+        alert("Computer wins the game!")
+        pla=0
+        com=0
+    }
+    
+
 }
 
 
-playRound(getHumanChoice(), getComputerChoice())
-playRound(getHumanChoice(), getComputerChoice())
-playRound(getHumanChoice(), getComputerChoice())
-playRound(getHumanChoice(), getComputerChoice())
-playRound(getHumanChoice(), getComputerChoice())
-console.log("computer score: "+com)
-console.log("player score: "+pla)
 
 
