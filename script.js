@@ -25,24 +25,29 @@ parent.addEventListener("click",(e)=>{
     }
 })
 function playRound(humanChoice, computerChoice) {
+    let flag=0
     if (humanChoice==computerChoice){
         return
     }
     else if ( humanChoice=="rock" && computerChoice=="scissor"){
         pla+=1
+        flag=1
     }
     else if (humanChoice=="scissor" && computerChoice=="paper"){
         pla+=1
+        flag=1
     }
     else if (humanChoice=="paper" && computerChoice=="rock"){
         pla+=1
+        flag=1
     }
     else{
         com+=1
+        flag=-1
     }
     document.querySelector("#player-choice").textContent="Player Choice: "+humanChoice
     document.querySelector("#computer-choice").textContent="Computer Choice: "+computerChoice
-    document.querySelector("#outcome").textContent="Outcome: "+(pla>com ? "Player Wins!" : com>pla ? "Computer Wins!" : "It's a Tie!")
+    document.querySelector("#outcome").textContent="Outcome: "+(flag===1 ? "Player Wins!" : flag===-1 ? "Computer Wins!" : "It's a Tie!")
     document.querySelector("#player-score").textContent="Player Score: "+pla
     document.querySelector("#computer-score").textContent="Computer Score: "+com
     if (pla==5){
